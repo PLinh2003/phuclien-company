@@ -1,4 +1,15 @@
+using Microsoft.EntityFrameworkCore;
+using phuclien_company.Data;
+using phuclien_company.Interfaces;
+using phuclien_company.Repositories;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<PlcDbContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+// Add Repositories
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
 builder.Services.AddControllersWithViews();
 
@@ -6,7 +17,6 @@ var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Home/Error");
     app.UseHsts();
 }
 
