@@ -1,0 +1,18 @@
+@model ProductIndexViewModel
+
+@{
+    ViewData["Title"] = "Product List";
+}
+
+<div>
+    @foreach (var product in Model.Products)
+    {
+        <div class="product-item">
+            <img class="img-fluid rounded" src="@Url.Content(product.ImageUrl)" alt="@product.Name" />
+            <h2>@product.Name</h2>
+            <p>Price: @product.Price.ToString("C")</p>
+            <p>@product.Description</p>
+            <a href="@Url.Action("Details", "Product", new { id = product.Id })">View Details</a>
+        </div>
+    }
+</div>

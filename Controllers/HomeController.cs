@@ -6,8 +6,9 @@ public class HomeController(ILogger<HomeController> logger) : Controller
 {
     private readonly ILogger<HomeController> _logger = logger;
 
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
+        await Task.Delay(1000);
         return View();
     }
 }
