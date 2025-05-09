@@ -11,11 +11,16 @@ namespace phuclien_company.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var products = await _productRepository.GetAllAsync();
             return View(model: new ProductIndexViewModel
             {
-                Products = products
+                Products = await _productRepository.GetAllAsync()
             });
+        }
+
+        public async Task<IActionResult> Details(int id)
+        {
+            await Task.Delay(1);
+            return View();
         }
     }
 }
