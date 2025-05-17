@@ -4,6 +4,6 @@ namespace phuclien_company.ViewModels
 {
     public class ProductDetailViewModel
     {
-        public required ProductModel Product { get; set; }
+        public required ProductModel? Product { get; set; }
     }
 }

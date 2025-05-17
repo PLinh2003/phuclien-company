@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using phuclien_company.Interfaces;
+using phuclien_company.Models;
 using phuclien_company.ViewModels;
 
 namespace phuclien_company.Controllers
@@ -17,10 +18,13 @@ namespace phuclien_company.Controllers
             });
         }
 
-        public async Task<IActionResult> Details(int id)
+        public async Task<IActionResult> Detail(string? id)
         {
-            await Task.Delay(1);
-            return View();
+            var product = await _productRepository.GetByIdAsync(new ProductModel { Id = Guid.Parse(id ?? "") });
+            return View(new ProductDetailViewModel
+            {
+                Product = product
+            });
         }
     }
 }

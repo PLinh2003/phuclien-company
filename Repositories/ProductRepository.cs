@@ -23,9 +23,10 @@ public class ProductRepository : IProductRepository
         return _products;
     }
 
-    public Task<ProductModel> GetByIdAsync(ProductModel entity)
+    public async Task<ProductModel?> GetByIdAsync(ProductModel entity)
     {
-        throw new NotImplementedException();
+        await Task.Delay(1);
+        return _products.FirstOrDefault(p => p.Id == entity.Id);
     }
 
     public Task UpdateAsync(ProductModel entity)
